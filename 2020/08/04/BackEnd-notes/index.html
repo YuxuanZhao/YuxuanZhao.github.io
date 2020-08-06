@@ -15,7 +15,7 @@
 <meta property="og:description" content="Static vs Dynamic一个网页看起来会动不代表是dynamic的，dynamic意味着每次打开都可能是不同的html&#x2F;css&#x2F;js 网络是如何运作的？先从网站名查询到ip地址，向ip地址请求具体的网页，然后服务器在接收到HTTP的请求之后，确定如何response GET 请求网页，取回：http:&#x2F;&#x2F;www.reddit.com&#x2F;search?q&#x3D;cats 我们有可能像这样传一些参数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-04T03:27:16.000Z">
-<meta property="article:modified_time" content="2020-08-04T03:27:44.599Z">
+<meta property="article:modified_time" content="2020-08-05T06:02:39.579Z">
 <meta property="article:author" content="Eason Chiu">
 <meta name="twitter:card" content="summary">
   
@@ -97,19 +97,15 @@
 <p>mkdir 创建文件夹</p>
 <p>rm 删除文件</p>
 <p>rm -rf 删除文件夹里的所有东西 recursive force（-rf是一个flag）</p>
-<blockquote>
 <p>cd .. 的意思是返回到上一级的文件夹</p>
 <p>cd xxx 进入xxx文件夹（只要写首字母+ tab，就有自动补全）</p>
 <p>touch yellow.txt</p>
 <p>mkdir FavColors</p>
 <p>rm blue.txt</p>
-</blockquote>
 <p>node hello.js 运行hello.js</p>
 <h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>我们想要使用npm的前提是先初始化好npm</p>
-<blockquote>
 <p><strong>npm init -f</strong> //直接初始化 package.json, -f 用于跳过问题直接开始</p>
 <p><strong>npm install formidable –save</strong> //安装依赖，–save将此依赖信息存入package.json</p>
-</blockquote>
 <p>在.js 中使用npm</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> joke = <span class="built_in">require</span>(<span class="string">&quot;knock-knock-jokes&quot;</span>); <span class="comment">//include package</span></span><br><span class="line"><span class="built_in">console</span>.log(joke()); <span class="comment">//joke在这里就是这个package的方法</span></span><br></pre></td></tr></table></figure>
 
@@ -157,29 +153,28 @@
 <p>?给我们传参数的机会，&amp;让我们传入多个参数</p>
 <h2 id="SQL-amp-NoSQL"><a href="#SQL-amp-NoSQL" class="headerlink" title="SQL &amp; NoSQL"></a>SQL &amp; NoSQL</h2><p>SQL是关系型，关系型是table类型的，不同的table要相互联系往往是使用一个id table来join。相反，NoSQL是一个非关系型的数据库使用方法，数据被储存成类似于javascript的object形式。</p>
 <p>在AWS Cloud9里使用MongoDB：</p>
-<blockquote>
-<p>创建 touch mongodb-org-3.6.repo</p>
-<p>把下列内容黏贴到该文件</p>
-<blockquote>
+<p>创建 touch mongodb-org-3.6.repo<br>把下列内容黏贴到该文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mongodb-org-3.6]</span><br><span class="line">name&#x3D;MongoDB Repository</span><br><span class="line">baseurl&#x3D;https:&#x2F;&#x2F;repo.mongodb.org&#x2F;yum&#x2F;amazon&#x2F;2013.03&#x2F;mongodb-org&#x2F;3.6&#x2F;x86_64&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">enabled&#x3D;1</span><br><span class="line">gpgkey&#x3D;https:&#x2F;&#x2F;www.mongodb.org&#x2F;static&#x2F;pgp&#x2F;server-3.6.asc</span><br></pre></td></tr></table></figure>
-</blockquote>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mv mongodb-org-3.6.repo &#x2F;etc&#x2F;yum.repos.d</span><br><span class="line">sudo yum install -y mongodb-org</span><br></pre></td></tr></table></figure>
 
-<p>关闭<strong>mongodb-org-3.6.repo</strong>文件，并在出现提示时按“ <strong>关闭”选项卡</strong></p>
-<p>cd回ec2-user</p>
+<p>关闭<strong>mongodb-org-3.6.repo</strong>文件，并在出现提示时按“ <strong>关闭”选项卡</strong><br>cd回ec2-user</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir data</span><br><span class="line">echo &#39;mongod --dbpath&#x3D;data --nojournal&#39; &gt; mongod</span><br><span class="line">chmod a+x mongod</span><br></pre></td></tr></table></figure>
 
-<p>./mongod 打开，要在ec2-user～下进行</p>
-</blockquote>
+<p> ./mongod 打开，要在ec2-user～下进行</p>
 <p><strong>CRUD</strong> 在Mongo command line</p>
-<blockquote>
-<p>Create: db.dogs.insert({name: “Rusty”, breed: “Mutt”})</p>
-<p>Read: db.dogs.find({breed: “Mutt”})</p>
-<p>Update: db.dogs.update({name: “Rusty”}, {$set: (name: “Tater”, isCute: true)}) 这里第一个参数是要改动的object，第二个参数是需要改动的内容，可以增加不存在的attribute</p>
-<p>Delete: db.dogs.remove({breed: “Mutt”})</p>
-</blockquote>
+<ul>
+<li><p>Create: db.dogs.insert({name: “Rusty”, breed: “Mutt”})</p>
+</li>
+<li><p>Read: db.dogs.find({breed: “Mutt”})</p>
+</li>
+<li><p>Update: db.dogs.update({name: “Rusty”}, {$set: (name: “Tater”, isCute: true)}) 这里第一个参数是要改动的object，第二个参数是需要改动的内容，可以增加不存在的attribute</p>
+</li>
+<li><p>Delete: db.dogs.remove({breed: “Mutt”})</p>
+</li>
+</ul>
 <h2 id="Mongoose"><a href="#Mongoose" class="headerlink" title="Mongoose"></a>Mongoose</h2><p>在node js里更好地使用Mongo DB的一种工具。同样是使用npm进行下载。并在js里使用</p>
-<p>npm install –save <a href="mailto:&#109;&#x6f;&#x6e;&#103;&#111;&#x6f;&#x73;&#x65;&#x40;&#x35;&#x2e;&#51;&#x2e;&#49;&#x35;">&#109;&#x6f;&#x6e;&#103;&#111;&#x6f;&#x73;&#x65;&#x40;&#x35;&#x2e;&#51;&#x2e;&#49;&#x35;</a>（最新的版本）</p>
+<p>npm install –save <a href="mailto:&#109;&#x6f;&#x6e;&#x67;&#x6f;&#111;&#115;&#101;&#64;&#x35;&#x2e;&#x33;&#46;&#x31;&#x35;">&#109;&#x6f;&#x6e;&#x67;&#x6f;&#111;&#115;&#101;&#64;&#x35;&#x2e;&#x33;&#46;&#x31;&#x35;</a>（最新的版本）</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">&quot;mongoose&quot;</span>);</span><br><span class="line"></span><br><span class="line">mongoose.connect(<span class="string">&quot;mongodb://localhost/toys_hub&quot;</span>, &#123;<span class="attr">useNewUrlParser</span>: <span class="literal">true</span>, <span class="attr">useUnifiedTopology</span>: <span class="literal">true</span>&#125;);</span><br><span class="line"><span class="comment">//如果没有cat_app存在，那么这行代码和上面一样，会自动创建一个，27017是默认的端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1.</span></span><br><span class="line"><span class="keyword">var</span> catSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  name: <span class="built_in">String</span>,</span><br><span class="line">  age: <span class="built_in">Number</span>,</span><br><span class="line">  temperament: <span class="built_in">String</span></span><br><span class="line">&#125;); <span class="comment">//just pattern</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2.</span></span><br><span class="line"><span class="keyword">var</span> Cat = mongoose.model(<span class="string">&quot;Cat&quot;</span>, catSchema);<span class="comment">//singular version of our model with many methods, create collections automatically with plural</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1.</span></span><br><span class="line"><span class="keyword">var</span> george = <span class="keyword">new</span> Cat(&#123;</span><br><span class="line">  name: <span class="string">&quot;George&quot;</span>,</span><br><span class="line">  age: <span class="number">11</span>,</span><br><span class="line">  temperament:  <span class="string">&quot;Grouchy&quot;</span></span><br><span class="line">&#125;);<span class="comment">//create</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2.</span></span><br><span class="line">george.save(<span class="function"><span class="keyword">function</span>(<span class="params">err, cat</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Something wrong&quot;</span>)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Just saved a cat to the database:&quot;</span>);</span><br><span class="line">    cosole.log(cat);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);<span class="comment">//save to the collection, handle the error if not save successfully, callback run after the save() is run</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//another way</span></span><br><span class="line">Cat.create(&#123;</span><br><span class="line">  name: <span class="string">&quot;Snow White&quot;</span>,</span><br><span class="line">  age: <span class="number">15</span>,</span><br><span class="line">  temperament: <span class="string">&quot;Bland&quot;</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, cat</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(cat);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);<span class="comment">//use this create() function, to add directly, and the 2rd attribute is a callback function that handle unsuccessful situation</span></span><br><span class="line"></span><br><span class="line">Cat.find(&#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, cats</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Oh no, error!&quot;</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;All the cats:&quot;</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(cats);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);<span class="comment">//show all the cats and handle the error may be shown</span></span><br></pre></td></tr></table></figure>
 
 <p>命令行看数据库里的内容</p>
@@ -264,10 +259,7 @@
 
 <h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>session就是让http request从stateless变得有state。它的作用很大程度上就是让用户得以登陆并看到特定的与之相关的内容，当用户logout的时候他们将不再能够看到这些内容。（将特定内容和用户登陆这一state绑定，在发送请求的时候实质上是XXX向服务器发起了这一请求）</p>
 <p>Passport JS + Express-Session</p>
-<blockquote>
-<p>npm init</p>
-<p>npm install bodu-parser express express-session mongoose passport passport-local passport-local-mongoose</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm init</span><br><span class="line"></span><br><span class="line">$ npm install bodu-parser express express-session mongoose passport passport-local passport-local-mongoose</span><br></pre></td></tr></table></figure>
 <h2 id="User-Authentication-一个需要登录才能看到的秘密网页"><a href="#User-Authentication-一个需要登录才能看到的秘密网页" class="headerlink" title="User Authentication 一个需要登录才能看到的秘密网页"></a>User Authentication 一个需要登录才能看到的秘密网页</h2><p>app.js</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>),</span><br><span class="line">    mongoose = reuiqre(<span class="string">&quot;mongoose&quot;</span>),</span><br><span class="line">    passport = <span class="built_in">require</span>(<span class="string">&quot;passport&quot;</span>),</span><br><span class="line">    bodyParser = <span class="built_in">require</span>(<span class="string">&quot;body-parser&quot;</span>),</span><br><span class="line">    User = <span class="built_in">require</span>(<span class="string">&quot;./models/user&quot;</span>),</span><br><span class="line">    localStrategy = <span class="built_in">require</span>(<span class="string">&quot;passport-local&quot;</span>),</span><br><span class="line">    passportLocalMongoose = <span class="built_in">require</span>(<span class="string">&quot;passport-local-mongoose&quot;</span>);</span><br><span class="line"></span><br><span class="line">app.use(bodyParser.urlencoded(&#123;<span class="attr">extended</span>: <span class="literal">true</span>&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">//==passport configuration==</span></span><br><span class="line">app.use(<span class="built_in">require</span>(<span class="string">&quot;express-session&quot;</span>)(&#123;</span><br><span class="line">  secret: <span class="string">&quot;Rusty is the best&quot;</span>,</span><br><span class="line">  resave: <span class="literal">false</span>,</span><br><span class="line">  saveUninitialized: <span class="literal">false</span></span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">app.use(passport.initialize());</span><br><span class="line">app.use(passport.session());</span><br><span class="line"></span><br><span class="line">passport.use(<span class="keyword">new</span> LocalStrategy(User.authenticate()));<span class="comment">//authenticate() 是 passport-local-mongoose 带来的功能</span></span><br><span class="line">passport.serializeUser(User.serializeUser());</span><br><span class="line">passport.deserializeUser(User.deserializeUser());</span><br><span class="line"></span><br><span class="line"><span class="comment">//增加中间件 isLoggedIn 如果不是登陆的用户，就重定向</span></span><br><span class="line">app.get(<span class="string">&quot;/secret&quot;</span>, isLoggedIn, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.render(<span class="string">&quot;secret&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//==注册==</span></span><br><span class="line">app.post(<span class="string">&quot;/register&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  User.register(<span class="keyword">new</span> User(&#123;<span class="attr">username</span>: req.body.username&#125;), req.body.password, <span class="function"><span class="keyword">function</span>(<span class="params">err, user</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(err);</span><br><span class="line">      <span class="keyword">return</span> res.render(<span class="string">&quot;register&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    passport.authenticate(<span class="string">&quot;local&quot;</span>)(req, res, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      res.redirect(<span class="string">&quot;/secret&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里post的第二个参数是middleware中间件。中间件是马上运行的，最后一个是callback，在运行完成后才会运行。</span></span><br><span class="line"><span class="comment">//==登陆==</span></span><br><span class="line">app.post(<span class="string">&quot;/login&quot;</span>, passport.authenticate(<span class="string">&quot;local&quot;</span>,  &#123;</span><br><span class="line">         successRedirect: <span class="string">&quot;/secret&quot;</span>, </span><br><span class="line">         failureRedirect: <span class="string">&quot;/login&quot;</span></span><br><span class="line">&#125;), <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//==登出==</span></span><br><span class="line">app.get(<span class="string">&quot;/logout&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  req.logout();<span class="comment">//删除req的session所有的内容</span></span><br><span class="line">  res.redirect(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//标准的middleware需要这三个参数，next是下一个callback方程</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isLoggedIn</span>(<span class="params">req, res, next</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(req.isAuthenticated())&#123;</span><br><span class="line">    <span class="keyword">return</span> next();</span><br><span class="line">  &#125;</span><br><span class="line">  res.redirect(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -317,66 +309,37 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">req.flash(<span class="string">&quot;error&quot;</span>, err.message);</span><br><span class="line"><span class="comment">//利用已有的 err 的 message</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>在需要git的文件夹内，运行命令行</p>
-<blockquote>
-<p>git init</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
 <p>如果运行 git status，我们会得到</p>
-<blockquote>
 <p>on branch master 意味着我们是master</p>
 <p>Untracked files:</p>
-</blockquote>
 <p>git不会自动把所在的文件夹里的所有文件track。使用git add来添加需要track的文件。每一次更改文件，我们都需要将更改的文件重新add一次，因为commit的文件是刚刚add的文件</p>
-<blockquote>
-<p>git add app.js</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add app.js</span><br></pre></td></tr></table></figure>
 <p>-m 提示要添加commit信息</p>
-<blockquote>
-<p>git commit -m “add app.js file”</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;add app.js file&quot;</span><br></pre></td></tr></table></figure>
 <p>一个.意味着添加所有not staged changed file</p>
-<blockquote>
-<p>git add .</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
 <p>所有的commit记录</p>
-<blockquote>
-<p>git log</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br></pre></td></tr></table></figure>
 <p>我们回看某一个commit的状态，只是回看所以master仍然停留在原位，我们现在是Head在前面</p>
-<blockquote>
-<p>git checkout (xxx-id)</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout (xxx-id)</span><br></pre></td></tr></table></figure>
 <p>程序员很少直接revert回很早之前的地方，不过也有这样的代码，善用谷歌</p>
 <h2 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h2><p>在命令行中使用 Heroku</p>
-<blockquote>
-<p>heroku login -i</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ heroku login -i</span><br></pre></td></tr></table></figure>
 <p>填写邮件和密码信息</p>
-</blockquote>
 <p>使用git init，git add 和 git commit来做好准备，之后</p>
-<blockquote>
-<p>heroku create</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ heroku create</span><br></pre></td></tr></table></figure>
 <p>这个时候 heroku 只是知道我们想要创建一个 app，但是具体的内容还是不清楚的。</p>
-<blockquote>
-<p>git remote -v</p>
-<p>git push heroku master</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br><span class="line"></span><br><span class="line">$ git push heroku master</span><br></pre></td></tr></table></figure>
 <p>debug heroku，我们缺失了start.js因为在cloud9里面我们是通过node app.js启动的，但是单纯上传所有的文件并不能做到这些。</p>
-<blockquote>
-<p>heroku logs</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ heroku logs</span><br></pre></td></tr></table></figure>
 <p>我们需要在package.json里添加</p>
-<blockquote>
-<p>“scripts”: {</p>
-<p>​    “start”: “node app.js”</p>
-<p>}</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">​    &quot;start&quot;: &quot;node app.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们可以使用 heroku run ls来命令远程的heroku运行一些命令行</p>
 <h2 id="MongoLab"><a href="#MongoLab" class="headerlink" title="MongoLab"></a>MongoLab</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mongoose.connect(<span class="string">&quot;mongodb://localhost/yelp_camp&quot;</span>);</span><br><span class="line"><span class="comment">//更改成mongolab的形式，登陆后自网站上获取</span></span><br><span class="line">mongoose.connect(<span class="string">&quot;mongodb://#username:#password@ds055525.mongolab.com:55525/yelpcamp&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>在cloud9的命令行里输入</p>
-<blockquote>
-<p>export DATABASEURL=mongodb://localhost/yelp_camp</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ export DATABASEURL&#x3D;mongodb:&#x2F;&#x2F;localhost&#x2F;yelp_camp</span><br></pre></td></tr></table></figure>
 <p>在heroku更改”Settings -&gt; Config Variables -&gt; KEY &amp; VALUE”</p>
 <p>然后把上面的代码改成</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = process.env.DATABASEURL || <span class="string">&quot;mongodb://localhost/yelp_camp&quot;</span>;</span><br><span class="line"><span class="comment">//第二个是在参数不存在的时候给一个hard code 来避免报错</span></span><br><span class="line">mongoose.connect(url);</span><br></pre></td></tr></table></figure>
